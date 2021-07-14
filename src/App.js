@@ -1,25 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import Films from './components/Films'
+import People from './components/People'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+
+    const [filmsLoaded, setFilmsLoaded] = useState()
+    const [peopleLoaded, setPeopleLoaded] = useState()
+
+    const loadFilms = () => {
+        console.log("Films Loaded")
+        setFilmsLoaded(true)
+        setPeopleLoaded(false)
+    }
+
+    const loadPeople = () => {
+        console.log("Films Loaded")
+        setPeopleLoaded(true)
+        setFilmsLoaded(false)
+    }
+
+    if (filmsLoaded === true) {
+        return (
+            <>
+                <button onClick={loadFilms}>Films</button>
+                <button onClick={loadPeople}>People</button>
+                <Films />
+            </>
+        )
+    } else if (peopleLoaded === true) {
+        return (
+            <>
+                <button onClick={loadFilms}>Films</button>
+                <button onClick={loadPeople}>People</button>
+                <People />
+            </>
+        )
+    } else {
+        return (
+            <>
+                <button onClick={loadFilms}>Films</button>
+                <button onClick={loadPeople}>People</button>
+                <h1>None Loaded</h1>
+            </>
+        )
+    }
 }
 
-export default App;
+
+export default App
